@@ -49,12 +49,27 @@ export class Service {
         conf.appwriteCollectionId,
         slug
       );
-      return true
+      return true;
     } catch (error) {
       console.log("Appwrite service :: deletePost :: error", error);
-      return false
+      return false;
     }
   }
+
+  async getPost(slug) {
+    try {
+      return await this.databases.getDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        slug
+      );
+    } catch (error) {
+        console.log("Appwrite Service :: getPost :: error", error);
+        return false
+    }
+    }
+    
+    
 }
 
 const service = new Service();
