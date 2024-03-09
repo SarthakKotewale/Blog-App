@@ -73,12 +73,25 @@ export class Service {
     try {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
-          conf.appwriteCollectionId,
+        conf.appwriteCollectionId,
         queries
       );
     } catch (error) {
       console.log("Attribute service :: getPosts :: error", error);
     }
+  }
+
+  //file upload service
+
+  async uploadFile(file) {
+    try {
+      return await this.bucket.createFile(conf.appwriteBucketId, ID.unique(), file);
+    } catch (error) {
+      console.log("Appwrite service :: uploadFile :: error", error);
+      return false;
+    }
+
+  
   }
 }
 
