@@ -64,12 +64,22 @@ export class Service {
         slug
       );
     } catch (error) {
-        console.log("Appwrite Service :: getPost :: error", error);
-        return false
+      console.log("Appwrite Service :: getPost :: error", error);
+      return false;
     }
+  }
+
+  async getPosts(queries = [Query.equal("status", "active")]) {
+    try {
+      return await this.databases.listDocuments(
+        conf.appwriteDatabaseId,
+          conf.appwriteCollectionId,
+        queries
+      );
+    } catch (error) {
+      console.log("Attribute service :: getPosts :: error", error);
     }
-    
-    
+  }
 }
 
 const service = new Service();
